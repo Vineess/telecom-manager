@@ -28,3 +28,19 @@ export interface WorkOrder {
   createdAt: string // ISO
   dueDate?: string  // ISO
 }
+
+export type Unit = 'un' | 'm' | 'm²' | 'm³' | 'kg'
+
+export interface Material {
+  id: string
+  name: string
+  sku?: string
+  unit: Unit
+  qty: number          // quantidade em estoque
+  minQty?: number      // mínimo desejado
+  cost?: number        // custo médio
+  price?: number       // preço de venda
+  location?: string    // localização no almoxarifado
+  notes?: string
+  updatedAt: string    // ISO
+}
