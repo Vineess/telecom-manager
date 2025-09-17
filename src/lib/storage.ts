@@ -1,4 +1,3 @@
-// src/lib/storage.ts
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -11,7 +10,7 @@ function useLocalStorage<T>(key: string, initial: T) {
   const [state, setState] = useState<T>(() => {
     if (typeof window === 'undefined') return initial
     const raw = localStorage.getItem(key)
-    return raw ? JSON.parse(raw) as T : initial
+    return raw ? (JSON.parse(raw) as T) : initial
   })
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(state))
@@ -19,7 +18,7 @@ function useLocalStorage<T>(key: string, initial: T) {
   return [state, setState] as const
 }
 
-// Seeds iniciais para primeira carga
+// ------- Seeds iniciais -------
 const seedCustomers: Customer[] = [
   { id: uid(), name: 'ACME Telecom', doc: '12.345.678/0001-90', phone: '(11) 3333-0000', address: 'Av. Paulista, 1000 - SP' },
   { id: uid(), name: 'Condomínio Solaris', phone: '(11) 99999-1234', address: 'Rua das Flores, 321 - SP' },
@@ -54,7 +53,7 @@ const seedOrders = (customers: Customer[], techs: Technician[]): WorkOrder[] => 
   },
 ]
 
-/** “Mini DB” em localStorage */
+// ------- Mini “DB” -------
 export function useMiniDB() {
   const [customers, setCustomers] = useLocalStorage<Customer[]>('customers', [])
   const [technicians, setTechnicians] = useLocalStorage<Technician[]>('technicians', [])
@@ -78,13 +77,25 @@ export function useMiniDB() {
     customers, setCustomers,
     technicians, setTechnicians,
     orders, setOrders,
-    addCustomer: (c: Omit<Customer, 'id'>) => setCustomers(v => [...v, { id: uid(), ...c }]),
-    addTechnician: (t: Omit<Technician, 'id'>) => setTechnicians(v => [...v, { id: uid(), ...t }]),
+
+    // Customers
+    addCustomer: (c: Omit<Customer, 'id'>) =>
+      setCustomers(v => [...v, { id: uid(), ...c }]),
+    updateCustomer: (id: string, patch: Partial<Omit<Customer, 'id'>>) =>
+      setCustomers(v => v.map(c => (c.id === id ? { ...c, ...patch } : c))),
+    removeCustomer: (id: string) =>
+      setCustomers(v => v.filter(c => c.id !== id)),
+
+    // Technicians (já deixo preparado)
+    addTechnician: (t: Omit<Technician, 'id'>) =>
+      setTechnicians(v => [...v, { id: uid(), ...t }]),
+
+    // Orders
     addOrder: (o: Omit<WorkOrder, 'id' | 'createdAt'>) =>
       setOrders(v => [{ id: uid(), createdAt: new Date().toISOString(), ...o }, ...v]),
     updateOrderStatus: (id: string, status: WorkOrderStatus) =>
-      setOrders(v => v.map(o => o.id === id ? { ...o, status } : o)),
+      setOrders(v => v.map(o => (o.id === id ? { ...o, status } : o))),
     assignTechnician: (id: string, technicianId?: string) =>
-      setOrders(v => v.map(o => o.id === id ? { ...o, technicianId } : o)),
+      setOrders(v => v.map(o => (o.id === id ? { ...o, technicianId } : o))),
   }
 }
