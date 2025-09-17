@@ -14,19 +14,19 @@ export default function DashboardPage() {
     <div className="space-y-4">
       <h1 className="text-xl font-semibold">Dashboard</h1>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card>
+        <Card className="card-elev soft">
           <CardHeader><CardTitle>Ordens</CardTitle></CardHeader>
           <CardContent className="text-3xl font-bold">{orders.length}</CardContent>
         </Card>
-        <Card>
+        <Card className="card-elev soft">
           <CardHeader><CardTitle>Clientes</CardTitle></CardHeader>
           <CardContent className="text-3xl font-bold">{customers.length}</CardContent>
         </Card>
-        <Card>
+        <Card className="card-elev soft">
           <CardHeader><CardTitle>Técnicos</CardTitle></CardHeader>
           <CardContent className="text-3xl font-bold">{technicians.length}</CardContent>
         </Card>
-        <Card>
+        <Card className="card-elev soft">
           <CardHeader><CardTitle>Pendentes / Andamento / Concluídas</CardTitle></CardHeader>
           <CardContent className="text-lg">{pend} / {andamento} / {concl}</CardContent>
         </Card>

@@ -119,7 +119,7 @@ export default function ConfigPage() {
       <h1 className="text-xl font-semibold">Configurações</h1>
 
       {/* Perfil da empresa */}
-      <Card>
+      <Card className="card-elev soft">
         <CardHeader><CardTitle>Perfil da empresa</CardTitle></CardHeader>
         <CardContent className="grid gap-3 sm:grid-cols-2">
           <div className="grid gap-2">
@@ -146,7 +146,7 @@ export default function ConfigPage() {
       </Card>
 
       {/* Aparência / Tema */}
-      <Card>
+      <Card className="card-elev soft">
         <CardHeader><CardTitle>Aparência</CardTitle></CardHeader>
         <CardContent className="grid gap-3 sm:grid-cols-3">
           <div className="grid gap-1">
@@ -164,7 +164,7 @@ export default function ConfigPage() {
       </Card>
 
       {/* SLA por prioridade */}
-      <Card>
+      <Card className="card-elev soft">
         <CardHeader><CardTitle>SLA (horas alvo por prioridade)</CardTitle></CardHeader>
         <CardContent className="grid gap-3 sm:grid-cols-4">
           {(['Baixa','Média','Alta','Crítica'] as const).map(p => (
@@ -177,7 +177,7 @@ export default function ConfigPage() {
       </Card>
 
       {/* Kanban */}
-      <Card>
+      <Card className="card-elev soft">
         <CardHeader><CardTitle>Kanban</CardTitle></CardHeader>
         <CardContent className="grid gap-3 sm:grid-cols-4">
           {(['Pendente','Em andamento','Concluída','Cancelada'] as const).map(s => (
@@ -198,7 +198,7 @@ export default function ConfigPage() {
       </Card>
 
       {/* Notificações (placeholders) */}
-      <Card>
+      <Card className="card-elev soft">
         <CardHeader><CardTitle>Notificações</CardTitle></CardHeader>
         <CardContent className="grid gap-4 sm:grid-cols-3">
           <ToggleRow
@@ -220,7 +220,7 @@ export default function ConfigPage() {
       </Card>
 
       {/* Backup & Restauração */}
-      <Card>
+      <Card className="card-elev soft">
         <CardHeader><CardTitle>Dados • Backup & Restauração</CardTitle></CardHeader>
         <CardContent className="space-y-3">
           <div className="flex flex-wrap gap-2">

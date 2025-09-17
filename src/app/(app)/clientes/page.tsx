@@ -133,10 +133,10 @@ export default function ClientesPage() {
         </div>
       </div>
 
-      <Card>
+      <Card className="card-elev soft">
         <CardHeader><CardTitle>Lista de clientes</CardTitle></CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm table-skin">
             <thead className="text-left text-muted-foreground">
               <tr className="[&>th]:py-2 [&>th]:pr-3">
                 <th>Nome</th>

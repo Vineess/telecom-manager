@@ -117,7 +117,7 @@ export default function OrdersPage() {
         </Dialog>
       </div>
 
-      <Card>
+      <Card className="card-elev soft">
         <CardHeader>
           <CardTitle className="flex flex-wrap gap-3 items-center justify-between">
             <span>Lista de OS</span>
@@ -134,7 +134,7 @@ export default function OrdersPage() {
           </CardTitle>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm table-skin">
             <thead className="text-left text-muted-foreground">
               <tr className="[&>th]:py-2 [&>th]:pr-3">
                 <th>ID</th>

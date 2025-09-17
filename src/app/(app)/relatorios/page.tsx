@@ -149,7 +149,7 @@ export default function RelatoriosPage() {
       <h1 className="text-xl font-semibold">Relatórios</h1>
 
       {/* Filtros */}
-      <Card>
+      <Card className="card-elev soft">
         <CardHeader><CardTitle>Filtros</CardTitle></CardHeader>
         <CardContent className="grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
           <div className="grid gap-1">
@@ -229,13 +229,13 @@ export default function RelatoriosPage() {
       </div>
 
       {/* OS por Técnico */}
-      <Card>
+      <Card className="card-elev soft">
         <CardHeader className="flex-row items-center justify-between">
           <CardTitle>OS por Técnico</CardTitle>
           <Button size="sm" onClick={exportByTech}>Exportar CSV</Button>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm table-skin">
             <thead className="text-left text-muted-foreground">
               <tr className="[&>th]:py-2 [&>th]:pr-3">
                 <th>Técnico</th><th>Total</th>
@@ -262,13 +262,13 @@ export default function RelatoriosPage() {
       </Card>
 
       {/* OS por Cliente */}
-      <Card>
+      <Card className="card-elev soft">
         <CardHeader className="flex-row items-center justify-between">
           <CardTitle>OS por Cliente</CardTitle>
           <Button size="sm" onClick={exportByCust}>Exportar CSV</Button>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm table-skin">
             <thead className="text-left text-muted-foreground">
               <tr className="[&>th]:py-2 [&>th]:pr-3">
                 <th>Cliente</th><th>Total</th>
@@ -295,13 +295,13 @@ export default function RelatoriosPage() {
       </Card>
 
       {/* Materiais com baixo estoque */}
-      <Card>
+      <Card className="card-elev soft">
         <CardHeader className="flex-row items-center justify-between">
           <CardTitle>Materiais com estoque baixo</CardTitle>
           <Button size="sm" onClick={exportLowStock}>Exportar CSV</Button>
         </CardHeader>
         <CardContent className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm table-skin">
             <thead className="text-left text-muted-foreground">
               <tr className="[&>th]:py-2 [&>th]:pr-3">
                 <th>Nome</th><th>SKU</th><th>Qtd</th><th>Mínimo</th><th>Un.</th><th>Local</th><th>Atualizado</th>
