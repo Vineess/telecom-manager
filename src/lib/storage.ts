@@ -1,3 +1,4 @@
+// src/lib/storage.ts
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -18,7 +19,7 @@ function useLocalStorage<T>(key: string, initial: T) {
   return [state, setState] as const
 }
 
-// ------- Seeds iniciais -------
+// Seeds
 const seedCustomers: Customer[] = [
   { id: uid(), name: 'ACME Telecom', doc: '12.345.678/0001-90', phone: '(11) 3333-0000', address: 'Av. Paulista, 1000 - SP' },
   { id: uid(), name: 'Condomínio Solaris', phone: '(11) 99999-1234', address: 'Rua das Flores, 321 - SP' },
@@ -53,7 +54,6 @@ const seedOrders = (customers: Customer[], techs: Technician[]): WorkOrder[] => 
   },
 ]
 
-// ------- Mini “DB” -------
 export function useMiniDB() {
   const [customers, setCustomers] = useLocalStorage<Customer[]>('customers', [])
   const [technicians, setTechnicians] = useLocalStorage<Technician[]>('technicians', [])
@@ -86,9 +86,16 @@ export function useMiniDB() {
     removeCustomer: (id: string) =>
       setCustomers(v => v.filter(c => c.id !== id)),
 
-    // Technicians (já deixo preparado)
+    // Technicians
     addTechnician: (t: Omit<Technician, 'id'>) =>
       setTechnicians(v => [...v, { id: uid(), ...t }]),
+    updateTechnician: (id: string, patch: Partial<Omit<Technician, 'id'>>) =>
+      setTechnicians(v => v.map(t => (t.id === id ? { ...t, ...patch } : t))),
+    removeTechnician: (id: string) => {
+      setTechnicians(v => v.filter(t => t.id !== id))
+      // desatribui das OS
+      setOrders(v => v.map(o => (o.technicianId === id ? { ...o, technicianId: undefined } : o)))
+    },
 
     // Orders
     addOrder: (o: Omit<WorkOrder, 'id' | 'createdAt'>) =>
